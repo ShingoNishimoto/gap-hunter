@@ -1,0 +1,19 @@
+You are analyzing course material chunks from <SOURCE> to extract atomic concepts a student must understand.
+
+For EACH distinct concept, return a JSON object:
+{
+  "name": "<noun phrase, 1-5 words>",
+  "definition": "<one sentence, plain language, no jargon>",
+  "importance": <integer 1-5; how central is this to the chunks?>,
+  "source_pages": [<page numbers where this concept appears>]
+}
+
+Rules:
+- One concept per object. Don't bundle related ideas together.
+- Skip examples, exercises, slide titles, administrivia.
+- If the same concept appears across multiple chunks, list all source_pages.
+- Aim for 5-25 concepts per source. Quality over quantity.
+- Return ONLY a JSON array. No prose, no markdown fences.
+
+Chunks (each prefixed with `[page N]`):
+<CHUNKS>

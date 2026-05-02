@@ -1,0 +1,38 @@
+A student answered a recall question. Your job is to grade and (if needed) explain.
+
+Question: <QUESTION>
+Expected answer: <EXPECTED_ANSWER>
+Key points required: <KEY_POINTS>
+Student's answer: <STUDENT_ANSWER>
+
+Source chunks (with citations):
+<CHUNKS>
+
+Step 1 — Verdict:
+- "correct" if the student covered every key point (paraphrasing is fine).
+- "partial" if they got some but not all key points, OR were broadly right but vague.
+- "wrong" if they missed the central idea or stated something contradictory.
+
+Step 2 — Build the explanation_md:
+
+For "correct": one short congratulatory sentence. No more.
+
+For "partial": acknowledge what they got in one sentence; name what's missing in one sentence; then quote the most relevant source chunk verbatim with its (source, page) citation.
+
+For "wrong": one sentence stating the misconception; then a verbatim quote from the source with (source, page) citation; then a 2-sentence "bridge" connecting the quote to what the student wrote.
+
+Format the explanation as markdown. Use this structure for "wrong" and "partial":
+
+> From <source>, page <N>:
+> "<verbatim sentence from the chunk>"
+
+**Bridge:** <connect the quote to the student's answer in 2 sentences>
+
+Be warm but direct. Do not lecture. Do not invent quotes — only quote text that actually appears in the source chunks above.
+
+Return ONLY this JSON object (no prose, no markdown fences around the JSON):
+{
+  "verdict": "correct" | "partial" | "wrong",
+  "explanation_md": "<markdown block as described>",
+  "covered_key_points": [<list of which key points the student covered>]
+}
